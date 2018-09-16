@@ -1,6 +1,6 @@
 # solve-caesar
 decrypting a caesar encrypted text with unknown shift
-'''python
+```python
 import caesar_kit
 
 
@@ -21,4 +21,4 @@ print ( decrypt )
 
 # use .cipher_dict() to get Cipher dictionary
 print ( decrypt.cipher_dict() )
-'''
+```
