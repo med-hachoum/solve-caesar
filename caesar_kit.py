@@ -5,7 +5,7 @@ class Encrypt :
     
     
     def __init__(self,text,key):
-        self.text = text
+        self.text = text.lower()
         self.key = key
         
     def Cipher(shift=0):
@@ -25,7 +25,7 @@ class Encrypt :
                 cipher_text += ciphers[plain.index(c)]
             else:
                 cipher_text += c
-        return cipher_text
+        return cipher_text.lower()
     
         
 
@@ -35,10 +35,10 @@ class Break :
     
     
     def __init__(self,text):
-        self.text = text
+        self.text = text.lower()
     def shifts(self):
         from collections import Counter
-        e = (Counter(self.text.replace(' ','')).most_common()[0][0])
+        e = (Counter(self.text.lower().replace(' ','')).most_common()[0][0])
         return ord(e) - ord('e')
 
     def cipher_dict (self):
@@ -53,15 +53,15 @@ class Break :
             if 'a' <= c <= 'z':
                 plain_text += plain[cipher.index(c)]
             else:
-                plain_text += c
-        return plain_text
+                plain_text += c.lower()
+        return plain_text.lower()
     def brut_force(self) :
-        return [Encrypt(self.text,i) for i in range(27)]
+        return [Encrypt(self.text.lower(),i) for i in range(27)]
 
 
 class decrypt: 
     def __init__(self,text,key):
-        self.text = text
+        self.text = text.lower()
         self.key = key
     def cipher_dict (self):
         return {key: value for (key, value) in zip(Encrypt.alphabets,Encrypt.Cipher(self.key)) }
@@ -77,23 +77,6 @@ class decrypt:
                 plain_text += plain[cipher.index(c)]
             else:
                 plain_text += c
-        return plain_text
+        return plain_text.lower()
        
 
-
-
-encrypted_text = Encrypt("seed to others baby new born eseet",55)
-
-
-print("encrypted text:",encrypted_text)
-
-decrypted_text = decrypt("vhhg wr rwkhuv edeb qhz eruq hvhhw",3)
-print(decrypted_text)
-
-
-breaked_text = Break("d b n")
-print("break:",breaked_text)
-print("break:",breaked_text.shifts())
-
-
-print(breaked_text.brut_force())
